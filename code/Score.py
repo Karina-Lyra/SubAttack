@@ -17,7 +17,7 @@ class Score:
         pass
 
     def save(self, game_mode: str, player_score: list[int]):
-        pygame.mixer_music.load('./asset/Score.mp3')
+        pygame.mixer_music.load('./asset/sound/score_music.mp3')
         pygame.mixer_music.play(-1)
         db_proxy = DBProxy('DBScore')
         name = ''
@@ -58,7 +58,7 @@ class Score:
             pass
 
     def show(self):
-        pygame.mixer_music.load('./asset/Score.mp3')
+        pygame.mixer_music.load('./asset/sound/score_music.mp3')
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
         self.score_text(48, 'TOP 10 SCORE', C_YELLOW, SCORE_POS['Title'])
