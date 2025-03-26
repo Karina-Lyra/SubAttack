@@ -1,25 +1,28 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from constants import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
+from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
 
 
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/images/menu_bg.png').convert_alpha()
+        self.surf = pygame.image.load('./asset/image/menu_bg.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
         menu_option = 0
-        pygame.mixer_music.load('./asset/sounds/menu_music.wav')
+        pygame.mixer_music.load('./asset/sound/menu_music.mp3')
         pygame.mixer_music.play(-1)
         while True:
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(50, "Sub", C_ORANGE, ((WIN_WIDTH / 2), 70))
-            self.menu_text(50, "Attack", C_ORANGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(50, "Mountain", C_ORANGE, ((WIN_WIDTH / 2), 70))
+            self.menu_text(50, "Shooter", C_ORANGE, ((WIN_WIDTH / 2), 120))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
