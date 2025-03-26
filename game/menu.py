@@ -1,85 +1,54 @@
-import pygame
+import pygame.image
+from pygame import Surface, Rect
+from pygame.font import Font
 
-from game import constants
+from game.constants import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW
 
 
 class Menu:
-    def __init__(self, screen):
-        self.screen = screen
-        self.font_title = pygame.font.Font(None, 72)
-        self.font_button = pygame.font.Font(None, 36)
-        self.menu_bg = pygame.image.load("assets/images/menu_bg.png").convert()
-        self.menu_music = pygame.mixer.Sound("assets/sounds/menu_music.mp3")
-        self.button_width = 200
-        self.button_height = 50
-        self.button_margin = 20
-
-    def draw_button(self, text, rect, color, text_color):
-        pygame.draw.rect(self.screen, color, rect)
-        text_surface = self.font_button.render(text, True, text_color)
-        text_rect = text_surface.get_rect(center=rect.center)
-        self.screen.blit(text_surface, text_rect)
+    def __init__(self, window):
+        self.window = window
+        self.surf = pygame.image.load('./asset/images/menu_bg.png').convert_alpha()
+        self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
-        running = True
-        num_players = 2  # Sempre 2 jogadores
-        game_mode = "competitive"  # Sempre modo competitivo
+        menu_option = 0
+        pygame.mixer_music.load('./asset/sounds/menu_music.wav')
+        pygame.mixer_music.play(-1)
+        while True:
+            # DRAW IMAGES
+            self.window.blit(source=self.surf, dest=self.rect)
+            self.menu_text(50, "Sub", C_ORANGE, ((WIN_WIDTH / 2), 70))
+            self.menu_text(50, "Attack", C_ORANGE, ((WIN_WIDTH / 2), 120))
 
-        self.menu_music.play(-1)
-
-        title_text = self.font_title.render("Sub Attack", True, constants.WHITE)  # Título correto
-        title_rect = title_text.get_rect(center=(constants.SCREEN_WIDTH // 2, 100))
-
-        button_1p_rect = pygame.Rect(
-            constants.SCREEN_WIDTH // 2 - self.button_width // 2,
-            constants.SCREEN_HEIGHT // 2 - self.button_height - self.button_margin,
-            self.button_width,
-            self.button_height,
-        )
-        button_2p_rect = pygame.Rect(
-            constants.SCREEN_WIDTH // 2 - self.button_width // 2,
-            constants.SCREEN_HEIGHT // 2,
-            self.button_width,
-            self.button_height,
-        )
-        button_score_rect = pygame.Rect(
-            constants.SCREEN_WIDTH // 2 - self.button_width // 2,
-            constants.SCREEN_HEIGHT // 2 + self.button_height + self.button_margin,
-            self.button_width,
-            self.button_height,
-        )
-        button_exit_rect = pygame.Rect(
-            constants.SCREEN_WIDTH // 2 - self.button_width // 2,
-            constants.SCREEN_HEIGHT // 2 + 2 * (self.button_height + self.button_margin),
-            self.button_width,
-            self.button_height,
-        )
-
-        while running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    running = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_pos = pygame.mouse.get_pos()
-                    if button_1p_rect.collidepoint(mouse_pos):
-                        num_players = 1
-                        running = False
-                    elif button_2p_rect.collidepoint(mouse_pos):
-                        num_players = 2
-                        running = False
-                    elif button_score_rect.collidepoint(mouse_pos):
-                        pass
-                    elif button_exit_rect.collidepoint(mouse_pos):
-                        running = False
-
-            self.screen.blit(self.menu_bg, (0, 0))
-            self.screen.blit(title_text, title_rect)
-            self.draw_button("NEW GAME 1P", button_1p_rect, constants.BLUE, constants.WHITE)
-            self.draw_button("NEW GAME 2P", button_2p_rect, constants.RED, constants.WHITE)
-            self.draw_button("SCORE", button_score_rect, constants.WHITE, constants.BLACK)
-            self.draw_button("EXIT", button_exit_rect, constants.WHITE, constants.BLACK)
-
+            for i in range(len(MENU_OPTION)):
+                if i == menu_option:
+                    self.menu_text(20, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
+                else:
+                    self.menu_text(20, MENU_OPTION[i], C_WHITE, ((WIN_WIDTH / 2), 200 + 25 * i))
             pygame.display.flip()
 
-        self.menu_music.stop()
-        return num_players, game_mode
+            # Check for all events
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()  # Close Window
+                    quit()  # end pygame
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_DOWN:  # DOWN KEY
+                        if menu_option < len(MENU_OPTION) - 1:
+                            menu_option += 1
+                        else:
+                            menu_option = 0
+                    if event.key == pygame.K_UP:  # UP KEY
+                        if menu_option > 0:
+                            menu_option -= 1
+                        else:
+                            menu_option = len(MENU_OPTION) - 1
+                    if event.key == pygame.K_RETURN:  # ENTER
+                        return MENU_OPTION[menu_option]
+
+    def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
+        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surf.get_rect(center=text_center_pos)
+        self.window.blit(source=text_surf, dest=text_rect)

@@ -1,17 +1,19 @@
 import pygame
-from game import constants
+from game.constants import SUBMARINE_SPEED, WIN_WIDTH, WIN_HEIGHT
+
 
 class Submarine(pygame.sprite.Sprite):
-    def __init__(self, x, y, player_index):
+    def __init__(self, x, y, player_index, window):
         super().__init__()
+        self.window = window
         if player_index == 0:
-            self.image = pygame.image.load("assets/images/submarine.png").convert_alpha()
+            self.image = pygame.image.load("./assets/images/submarine/submarine.png").convert_alpha()
         else:
-            self.image = pygame.image.load("assets/images/submarine2.png").convert_alpha()
+            self.image = pygame.image.load("./assets/images/submarine/submarine2.png").convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.speed = constants.SUBMARINE_SPEED
+        self.speed = SUBMARINE_SPEED
         self.player_index = player_index
 
     def update(self):
@@ -36,11 +38,10 @@ class Submarine(pygame.sprite.Sprite):
                 self.rect.x += self.speed
 
         # Limita o submarino à tela
-        if self.rect.left < 0:
-            self.rect.left = 0
-        if self.rect.right > constants.SCREEN_WIDTH:
-            self.rect.right = constants.SCREEN_WIDTH
-        if self.rect.top < 0:
-            self.rect.top = 0
-        if self.rect.bottom > constants.SCREEN_HEIGHT:
-            self.rect.bottom = constants.SCREEN_HEIGHT
+        self.rect.left = max(0, self.rect.left)
+        self.rect.right = min(WIN_WIDTH, self.rect.right)
+        self.rect.top = max(0, self.rect.top)
+        self.rect.bottom = min(WIN_HEIGHT, self.rect.bottom)
+
+    def draw(self):
+        self.window.blit(self.image, self.rect)
