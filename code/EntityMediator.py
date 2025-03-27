@@ -1,4 +1,6 @@
-from code.Const import WIN_WIDTH
+import pygame
+
+from code.Const import WIN_WIDTH, PLAYER_KEY_SHOOT
 from code.Enemy import Enemy
 from code.EnemyShot import EnemyShot
 from code.Entity import Entity

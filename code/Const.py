@@ -107,7 +107,7 @@ ENTITY_SCORE = {
 
 ENTITY_SHOT_DELAY = {
     'Player1': 15,
-    'Player2': 10,
+    'Player2': 20,
     'Enemy1': 100,
     'Enemy2': 150,
     'Enemy3': 80,
