@@ -23,7 +23,7 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(80, "Sub", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(80, "Attack", C_ORANGE, ((WIN_WIDTH / 2), 120))
-
+            # select Menu
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
                     self.menu_text(25, MENU_OPTION[i], C_YELLOW, ((WIN_WIDTH / 2), 200 + 25 * i))
