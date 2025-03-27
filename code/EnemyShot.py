@@ -8,4 +8,7 @@ class EnemyShot(Entity):
         super().__init__(name, position)
 
     def move(self, ):
-        self.rect.centerx -= ENTITY_SPEED[self.name]
+        if self.name == 'Enemy3Shot':
+            self.rect.centery -= ENTITY_SPEED[self.name]
+        else:
+            self.rect.centerx -= ENTITY_SPEED[self.name]

@@ -33,7 +33,7 @@ ENTITY_SPEED = {
     'Enemy2': 1,
     'Enemy2Shot': 2,
     'Enemy3': 1,
-    'Enemy3Shot': 7,
+    'Enemy3Shot': 3,
 }
 
 ENTITY_HEALTH = {
@@ -48,9 +48,9 @@ ENTITY_HEALTH = {
     'Level2Bg3': 999,
     'Level2Bg4': 999,
     'Level2Bg5': 999,
-    'Player1': 300,
+    'Player1': 150,
     'Player1Shot': 1,
-    'Player2': 300,
+    'Player2': 150,
     'Player2Shot': 1,
     'Enemy1': 50,
     'Enemy1Shot': 1,
@@ -119,7 +119,7 @@ ENTITY_SHOT_DELAY = {
 # M
 MENU_OPTION = ('NEW GAME - 1 Player',
                'NEW GAME - 2 Players [COOPERATIVE]',
-               'NEW GAME 2 Players - [COMPETITIVE]',
+               'NEW GAME - 2 Players [COMPETITIVE]',
                'SCORE',
                'EXIT')
 
@@ -136,7 +136,7 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
 # S
-SPAWN_TIME = 4000
+SPAWN_TIME = 3000
 
 # T
 TIMEOUT_STEP = 100  # 100ms
