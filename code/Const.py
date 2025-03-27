@@ -6,6 +6,8 @@ C_YELLOW = (255, 255, 128)
 C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
+C_BLACK = (0, 0, 0)
+C_RED = (255, 0, 0)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -30,6 +32,8 @@ ENTITY_SPEED = {
     'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 2,
+    'Enemy3': 1,
+    'Enemy3Shot': 7,
 }
 
 ENTITY_HEALTH = {
@@ -52,6 +56,8 @@ ENTITY_HEALTH = {
     'Enemy1Shot': 1,
     'Enemy2': 60,
     'Enemy2Shot': 1,
+    'Enemy3': 40,
+    'Enemy3Shot': 1,
 }
 
 ENTITY_DAMAGE = {
@@ -74,6 +80,8 @@ ENTITY_DAMAGE = {
     'Enemy1Shot': 20,
     'Enemy2': 1,
     'Enemy2Shot': 15,
+    'Enemy3': 1,
+    'Enemy3Shot': 17,
 }
 
 ENTITY_SCORE = {
@@ -96,6 +104,8 @@ ENTITY_SCORE = {
     'Enemy1Shot': 0,
     'Enemy2': 125,
     'Enemy2Shot': 0,
+    'Enemy3': 115,
+    'Enemy3Shot': 0,
 }
 
 ENTITY_SHOT_DELAY = {
@@ -103,6 +113,7 @@ ENTITY_SHOT_DELAY = {
     'Player2': 15,
     'Enemy1': 100,
     'Enemy2': 200,
+    'Enemy3': 150,
 }
 
 # M
@@ -129,7 +140,7 @@ SPAWN_TIME = 4000
 
 # T
 TIMEOUT_STEP = 100  # 100ms
-TIMEOUT_LEVEL = 20000  # 20s
+TIMEOUT_LEVEL = 25000  # 25s
 # W
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
