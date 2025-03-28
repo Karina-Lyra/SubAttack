@@ -11,4 +11,4 @@ How to Contribute
 Feel free to contribute to the project and expand this universe!
 
 Credits
-Developed by [Your Name] - Ru: [Your Ru]
+Developed by Karina Scheila Alves Rodriguez Nery Lyra - Ru: 4611457
