@@ -1,6 +1,6 @@
 import pygame
 
-from code.Const import WIN_WIDTH, PLAYER_KEY_SHOOT
+from code.Const import WIN_WIDTH
 from code.Enemy import Enemy
 from code.EnemyShot import EnemyShot
 from code.Entity import Entity
@@ -27,14 +27,24 @@ class EntityMediator:
         valid_interaction = False
         if isinstance(ent1, Enemy) and isinstance(ent2, PlayerShot):
             valid_interaction = True
-        elif isinstance(ent1, PlayerShot) and isinstance(ent2, Enemy):
+        if isinstance(ent1, PlayerShot) and isinstance(ent2, Enemy):
             valid_interaction = True
-        elif isinstance(ent1, Player) and isinstance(ent2, EnemyShot):
+        if isinstance(ent1, Player) and isinstance(ent2, EnemyShot):
             valid_interaction = True
-        elif isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
+        if isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
+            valid_interaction = True
+            # collision between Shots
+        if isinstance(ent1, PlayerShot) and isinstance(ent2, EnemyShot):
+            valid_interaction = True
+        if isinstance(ent1, EnemyShot) and isinstance(ent2, PlayerShot):
+            valid_interaction = True
+            # Collision between Player and Enemy
+        if isinstance(ent1, Player) and isinstance(ent2, Enemy):
+            valid_interaction = True
+        if isinstance(ent1, Enemy) and isinstance(ent2, Player):
             valid_interaction = True
 
-        if valid_interaction:  # if valid_interaction == True:
+        if valid_interaction:
             if (ent1.rect.right >= ent2.rect.left and
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
@@ -43,6 +53,12 @@ class EntityMediator:
                 ent2.health -= ent1.damage
                 ent1.last_dmg = ent2.name
                 ent2.last_dmg = ent1.name
+
+                # Replacing Enemy and EnemyShot with explosion
+                if isinstance(ent1, Enemy) or isinstance(ent1, EnemyShot):
+                    ent1.surf = pygame.image.load('asset/image/EnemyExplosion.png').convert_alpha()
+                if isinstance(ent2, Enemy) or isinstance(ent2, EnemyShot):
+                    ent2.surf = pygame.image.load('asset/image/EnemyExplosion.png').convert_alpha()
 
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):
