@@ -1,5 +1,4 @@
-![Submarino do jogo](https://github.com/seu_usuario/seu_repositorio/blob/main/assets/images/submarine.png) "Sub Attack" ![Submarino do jogo](https://github.com/seu_usuario/seu_repositorio/blob/main/assets/images/submarine.png)
-
+![Submarino do jogo](https://github.com/Karina-Lyra/SubAttack/blob/main/asset/image/Player1.png) "Sub Attack" ![Submarino do jogo](https://github.com/Karina-Lyra/SubAttack/blob/main/asset/image/Player2.png)
 ### About
 Sub Attack is a 2D arcade adventure that immerses players in an underwater world full of action, developed with the Pygame library. This project was born as a Practical Activity for the Applied Programming Language course, under the guidance of Prof. Vinicius Pozzobon Borin, at Uninter.
 
