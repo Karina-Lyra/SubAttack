@@ -49,9 +49,8 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
-                        if isinstance(ent, Enemy):  #
+                        if isinstance(ent, Enemy):  # Destroying Enemy after creating EnemyShot
                             ent.health = 0
-
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_BLACK, (10, 20))
                 if ent.name == 'Player2':
