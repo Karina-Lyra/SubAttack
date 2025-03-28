@@ -25,23 +25,21 @@ class EntityMediator:
     @staticmethod
     def __verify_collision_entity(ent1, ent2):
         valid_interaction = False
-        if isinstance(ent1, Enemy) and isinstance(ent2, PlayerShot):
-            valid_interaction = True
-        if isinstance(ent1, PlayerShot) and isinstance(ent2, Enemy):
-            valid_interaction = True
-        if isinstance(ent1, Player) and isinstance(ent2, EnemyShot):
-            valid_interaction = True
-        if isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
-            valid_interaction = True
-            # collision between Shots
-        if isinstance(ent1, PlayerShot) and isinstance(ent2, EnemyShot):
-            valid_interaction = True
-        if isinstance(ent1, EnemyShot) and isinstance(ent2, PlayerShot):
-            valid_interaction = True
-            # Collision between Player and Enemy
         if isinstance(ent1, Player) and isinstance(ent2, Enemy):
             valid_interaction = True
-        if isinstance(ent1, Enemy) and isinstance(ent2, Player):
+        elif isinstance(ent1, Player) and isinstance(ent2, EnemyShot):
+            valid_interaction = True
+        elif isinstance(ent1, PlayerShot) and isinstance(ent2, Enemy):
+            valid_interaction = True
+        elif isinstance(ent1, PlayerShot) and isinstance(ent2, EnemyShot):
+            valid_interaction = True
+        elif isinstance(ent2, Player) and isinstance(ent1, Enemy):
+            valid_interaction = True
+        elif isinstance(ent2, Player) and isinstance(ent1, EnemyShot):
+            valid_interaction = True
+        elif isinstance(ent2, PlayerShot) and isinstance(ent1, Enemy):
+            valid_interaction = True
+        elif isinstance(ent2, PlayerShot) and isinstance(ent1, EnemyShot):
             valid_interaction = True
 
         if valid_interaction:
@@ -53,12 +51,22 @@ class EntityMediator:
                 ent2.health -= ent1.damage
                 ent1.last_dmg = ent2.name
                 ent2.last_dmg = ent1.name
-
                 # Replacing Enemy and EnemyShot with explosion
-                if isinstance(ent1, Enemy) or isinstance(ent1, EnemyShot):
-                    ent1.surf = pygame.image.load('asset/image/EnemyExplosion.png').convert_alpha()
-                if isinstance(ent2, Enemy) or isinstance(ent2, EnemyShot):
+                if isinstance(ent1, PlayerShot):
                     ent2.surf = pygame.image.load('asset/image/EnemyExplosion.png').convert_alpha()
+                    ent2.rect = ent2.surf.get_rect(center=ent2.rect.center)
+                elif isinstance(ent2, PlayerShot):
+                    ent1.surf = pygame.image.load('asset/image/EnemyExplosion.png').convert_alpha()
+                    ent1.rect = ent1.surf.get_rect(center=ent1.rect.center)
+                # Creating sound for collision with the Player
+                else:
+                    if (isinstance(ent1, Enemy) or
+                            isinstance(ent2, Enemy) or
+                            isinstance(ent1, EnemyShot) or
+                            isinstance(ent2, EnemyShot)):
+                        enemyDeath_sound = pygame.mixer.Sound('asset/sound/EnemyDeath.mp3')
+                        enemyDeath_sound.set_volume(1)
+                        enemyDeath_sound.play()
 
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):

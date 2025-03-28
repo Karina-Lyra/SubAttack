@@ -8,7 +8,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL, C_BLACK, PLAYER_KEY_SHOOT
+    TIMEOUT_STEP, TIMEOUT_LEVEL, C_BLACK
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -49,7 +49,7 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
-                        if isinstance(ent, Enemy):
+                        if isinstance(ent, Enemy):  #
                             ent.health = 0
 
                 if ent.name == 'Player1':
