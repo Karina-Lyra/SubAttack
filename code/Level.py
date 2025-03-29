@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import random
 import sys
 
@@ -87,7 +85,7 @@ class Level:
                     return False
 
             # printed text
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_BLACK,
+            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE,
                             (10, 2))
             self.level_text(14, f'fps: {clock.get_fps():.0f}', C_WHITE,
                             (10, WIN_HEIGHT - 35))

@@ -5,7 +5,7 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_RETURN, K_BACKSPACE, K_ESCAPE
 from pygame.font import Font
 
-from code.Const import C_YELLOW, SCORE_POS, MENU_OPTION, C_WHITE, WIN_WIDTH, WIN_HEIGHT, C_BLACK, C_ORANGE, C_BLUE
+from code.Const import C_YELLOW, SCORE_POS, MENU_OPTION, C_WHITE, WIN_WIDTH, WIN_HEIGHT, C_ORANGE
 from code.DBProxy import DBProxy
 
 
@@ -23,7 +23,12 @@ class Score:
         name = ''
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.score_text(48, 'YOU WIN!!', C_ORANGE, SCORE_POS['Title'])
+            #
+            center_x = WIN_WIDTH // 2
+            center_y = WIN_HEIGHT // 2
+            #
+            spacing = 25
+            self.score_text(52, 'YOU WIN!!', C_ORANGE, (center_x, center_y - spacing))
             text = 'Enter Player 1 name (4 characters):'
             score = player_score[0]
             if game_mode == MENU_OPTION[0]:
@@ -37,7 +42,7 @@ class Score:
                 else:
                     score = player_score[1]
                     text = 'Enter Player 2 name (4 characters):'
-            self.score_text(20, text, C_WHITE, SCORE_POS['EnterName'])
+            self.score_text(20, text, C_WHITE, (center_x, center_y + spacing))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -53,7 +58,7 @@ class Score:
                     else:
                         if len(name) < 4:
                             name += event.unicode
-            self.score_text(20, name, C_WHITE, SCORE_POS['Name'])
+            self.score_text(20, name, C_YELLOW, (center_x, center_y + spacing * 2))
             pygame.display.flip()
             pass
 
@@ -61,10 +66,10 @@ class Score:
         pygame.mixer_music.load('./asset/sound/score_music.mp3')
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
-        self.score_text(48, 'TOP 10 SCORE', C_YELLOW, SCORE_POS['Title'])
+        self.score_text(48, 'TOP 10 SCORE', C_ORANGE, SCORE_POS['Title'])
         self.score_text(20, '  NAME     SCORE             DATE      ', C_WHITE, SCORE_POS['Label'])
         self.score_text(18, "[Press Esc to return]", C_WHITE, (WIN_WIDTH // 2 - 100,
-                                                                 WIN_HEIGHT // 2 + 150))
+                                                               WIN_HEIGHT // 2 + 150))
         db_proxy = DBProxy('DBScore')
         list_score = db_proxy.retrieve_top10()
         db_proxy.close()

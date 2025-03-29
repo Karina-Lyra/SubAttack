@@ -1,6 +1,6 @@
-# C
 import pygame
 
+# C
 C_ORANGE = (255, 128, 0)
 C_YELLOW = (255, 255, 128)
 C_WHITE = (255, 255, 255)
@@ -136,16 +136,18 @@ PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
 # S
-SPAWN_TIME = 1000
+SPAWN_TIME = 800
 
 # T
 TIMEOUT_STEP = 200  # 200ms
-TIMEOUT_LEVEL = 25000  # 25s
+TIMEOUT_LEVEL = 35000  # 25s
+
 # W
 WIN_WIDTH = 576
 WIN_HEIGHT = 324
 
 # S
+
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              'EnterName': (WIN_WIDTH / 2, 80),
              'Label': (WIN_WIDTH / 2, 90),
