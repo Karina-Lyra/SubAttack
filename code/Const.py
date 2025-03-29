@@ -5,6 +5,9 @@ C_ORANGE = (255, 128, 0)
 C_YELLOW = (255, 255, 128)
 C_WHITE = (255, 255, 255)
 C_BLACK = (0, 0, 0)
+C_BLUE = (00, 19, 69)
+C_GREEN = (00, 64, 00)
+C_GREY = (217, 221, 220)
 
 # E
 EVENT_ENEMY = pygame.USEREVENT + 1

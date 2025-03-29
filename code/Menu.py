@@ -23,8 +23,8 @@ class Menu:
             self.window.blit(source=self.surf, dest=self.rect)
             self.menu_text(80, "Sub", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(80, "Attack", C_ORANGE, ((WIN_WIDTH / 2), 120))
-            self.menu_text(10, "Developed by: Karina Lyra - RU: 4611457", C_WHITE, ((WIN_WIDTH - 450), 310))
-
+            self.menu_text(10, "Developed by: Karina Lyra - RU: 4611457", C_WHITE,
+                           ((WIN_WIDTH - 450), 310))
 
             # select Menu
             for i in range(len(MENU_OPTION)):
