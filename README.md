@@ -1,4 +1,4 @@
-                                    ![](asset/image/Player1.png)                                       
+![](asset/image/Player1.png)                                       
 
 ### Sub Attack                     
 
