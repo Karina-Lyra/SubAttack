@@ -1,7 +1,6 @@
-![](asset/image/Player1.png) 
-### Sub Attack                     
-![](asset/image/Player2.png)
+                                    ![](asset/image/Player1.png)                                       
 
+### Sub Attack                     
 
 ### About
 Sub Attack is a 2D arcade adventure that immerses players in an underwater world full of action, developed with the Pygame library. This project was born as a Practical Activity for the Applied Programming Language course, under the guidance of Prof. Vinicius Pozzobon Borin, at Uninter.
@@ -15,3 +14,5 @@ Feel free to contribute to the project and expand this universe!
 
 ### Credits
 Developed by Karina Scheila Alves Rodriguez Nery Lyra - Ru: 4611457
+
+![](asset/image/Player2.png)
